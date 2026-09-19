@@ -32,7 +32,7 @@ export const portfolioData = {
     github: "https://github.com/febdinal",
     linkedin: "https://linkedin.com/febdinal",
     instagram: "https://instagram.com/febdinal",
-    whatsapp: "https://wa.me/629630330201",
+    whatsapp: "https://wa.me/6289630330201",
     email: "febdinal08@gmail.com",
     resumeUrl: "#"
   },
@@ -85,8 +85,8 @@ export const portfolioData = {
     },
     {
       id: "web-applications",
-      title: "Web Applications",
-      description: "Developing modern, responsive web applications with clean interfaces and practical user experiences.",
+      title: "Web & Mobile Applications",
+      description: "Developing modern, responsive web & mobile applications with clean interfaces and practical user experiences.",
       iconName: "layout"
     },
     {
@@ -104,9 +104,9 @@ export const portfolioData = {
       skills: ["Python", "AI Integration", "Automation", "API Integration"]
     },
     {
-      category: "Web Development",
+      category: "Web & Mobile Development",
       area: "web",
-      skills: ["Laravel", "PHP", "JavaScript", "TypeScript", "HTML", "CSS", "REST API"]
+      skills: ["Laravel", "PHP", "JavaScript", "TypeScript", "HTML", "CSS", "REST API", "React Native", "Flutter"]
     },
     {
       category: "Backend Engineering",
@@ -119,7 +119,7 @@ export const portfolioData = {
       skills: ["MySQL", "PostgreSQL", "Redis", "Linux", "VPS", "Nginx", "Git"]
     },
     {
-      category: "Frontend",
+      category: "Frontend Web Development",
       area: "frontend",
       skills: ["JavaScript", "TypeScript", "Vue", "Nuxt", "Responsive Design"]
     },
