@@ -133,24 +133,24 @@ export const portfolioData = {
   achievements: [
     {
       number: "01",
-      title: "Software Engineering",
-      event: "Building and maintaining web-based applications and backend systems.",
-      year: "2024 - Present",
-      tags: ["Full Stack", "Clean Code", "Maintenance"]
+      title: "Backend & API Development",
+      event: "Designing APIs, backend architecture, authentication, and business logic.",
+      year: "2020 - Present",
+      tags: ["REST API", "Security", "Scalability"]
     },
     {
       number: "02",
-      title: "SaaS Development",
-      event: "Developing digital products and SaaS solutions for business needs.",
-      year: "2024 - Present",
-      tags: ["SaaS", "Multi-tenant", "Subscription"]
+      title: "Software Engineering",
+      event: "Building and maintaining web-based applications and backend systems.",
+      year: "2021 - Present",
+      tags: ["Full Stack", "Clean Code", "Maintenance"]
     },
     {
       number: "03",
-      title: "Backend & API Development",
-      event: "Designing APIs, backend architecture, authentication, and business logic.",
+      title: "SaaS Development",
+      event: "Developing digital products and SaaS solutions for business needs.",
       year: "2023 - Present",
-      tags: ["REST API", "Security", "Scalability"]
+      tags: ["SaaS", "Multi-tenant", "Subscription"]
     },
     {
       number: "04",
@@ -161,6 +161,13 @@ export const portfolioData = {
     },
     {
       number: "05",
+      title: "AI & Automation",
+      event: "Working with AI & Automation systems.",
+      year: "2026 - Present",
+      tags: ["AI Integration", "Automation", "API Integration"]
+    },
+    {
+      number: "06",
       title: "Continuous Learning",
       event: "Exploring modern technologies, AI, automation, and software engineering practices.",
       year: "Ongoing",
@@ -361,7 +368,7 @@ export const portfolioData = {
     {
       title: "API & Backend Projects",
       description: "High-performance backend microservices with token-based authentication, structured caching, and rate limiting.",
-      tags: ["Node.js", "PHP", "Redis", "REST"],
+      tags: ["Node.js", "PHP", "Redis", "REST API"],
       githubUrl: "#"
     },
     {
@@ -380,6 +387,12 @@ export const portfolioData = {
       title: "Web Applications",
       description: "Dynamic single-page applications and server-rendered portals engineered with responsive layouts and accessible UX.",
       tags: ["Vue", "Nuxt", "JavaScript", "CSS"],
+      githubUrl: "#"
+    },
+    {
+      title: "Mobile Applications",
+      description: "Mobile applications that I have built for personal and client use Featuring responsive layouts and accessible UI/UX.",
+      tags: ["Android", "iOS", "React Native", "Flutter"],
       githubUrl: "#"
     }
   ]
