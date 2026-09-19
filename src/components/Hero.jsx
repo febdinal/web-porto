@@ -93,13 +93,7 @@ const Hero = () => {
                 pointerEvents: 'none'
             }}></div>
 
-            <div className="container" style={{
-                display: 'grid',
-                gridTemplateColumns: 'minmax(320px, 1.15fr) 0.85fr',
-                gap: '2.5rem',
-                alignItems: 'center',
-                width: '100%'
-            }}>
+            <div className="container hero-container">
                 {/* Text Content (Left) */}
                 <div className="animate-fade-in" style={{ textAlign: 'left', zIndex: 1, position: 'relative' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '30px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.12)', marginBottom: '1.25rem' }}>
@@ -108,25 +102,27 @@ const Hero = () => {
                     </div>
 
                     <h1 style={{
-                        fontSize: ' clamp(3.2rem, 6vw, 5.2rem)',
+                        fontSize: 'clamp(2.4rem, 7.5vw, 4.8rem)',
                         fontWeight: 800,
                         marginBottom: '0.75rem',
-                        lineHeight: 1.05,
+                        lineHeight: 1.08,
                         background: 'linear-gradient(135deg, #ffffff 40%, #a1a1aa 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        letterSpacing: '-1.5px'
+                        letterSpacing: '-1.5px',
+                        wordBreak: 'break-word'
                     }}>
                         {portfolioData.personal.name}
                     </h1>
 
                     <h2 style={{
-                        fontSize: 'clamp(1.35rem, 3vw, 2rem)',
+                        fontSize: 'clamp(1.15rem, 4vw, 1.9rem)',
                         marginBottom: '0.75rem',
                         fontFamily: 'var(--font-code)',
-                        minHeight: '2.8rem',
+                        minHeight: '2.6rem',
                         color: '#e4e4e7',
-                        fontWeight: 600
+                        fontWeight: 600,
+                        wordBreak: 'break-word'
                     }}>
                         {text}<span className="cursor">|</span>
                     </h2>
@@ -144,7 +140,7 @@ const Hero = () => {
                         maxWidth: '580px',
                         margin: '0 0 2rem 0',
                         color: '#94a3b8',
-                        fontSize: '1.05rem',
+                        fontSize: 'clamp(0.92rem, 3vw, 1.05rem)',
                         lineHeight: '1.65'
                     }}>
                         {portfolioData.personal.description}
@@ -161,7 +157,7 @@ const Hero = () => {
                     </div>
 
                     {/* Social Media Icons */}
-                    <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+                    <div className="hero-social-links" style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
                         {/* GitHub */}
                         <a
                             href={portfolioData.socialLinks.github}
@@ -244,17 +240,8 @@ const Hero = () => {
                 </div>
 
                 {/* Profile Card / Lanyard (Right) */}
-                <div style={{
-                    height: '600px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    paddingTop: '0',
-                    zIndex: 2,
-                }}>
-                    <div style={{ transform: 'scale(1)' }}>
-                        <Lanyard />
-                    </div>
+                <div className="hero-lanyard-wrapper">
+                    <Lanyard />
                 </div>
             </div>
 
@@ -283,6 +270,22 @@ const Hero = () => {
             </div>
 
             <style>{`
+                .hero-container {
+                    display: grid;
+                    grid-template-columns: 1.15fr 0.85fr;
+                    gap: 2.5rem;
+                    align-items: center;
+                    width: 100%;
+                }
+                .hero-lanyard-wrapper {
+                    height: 600px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    padding-top: 0;
+                    z-index: 2;
+                    width: 100%;
+                }
                 .cursor {
                     animation: blink 1s step-end infinite;
                     color: var(--accent-color);
@@ -296,26 +299,33 @@ const Hero = () => {
                     60% {transform: translateY(-4px) translateX(-50%);}
                 }
                 @media (max-width: 968px) {
-                    .container {
+                    .hero-container {
                         grid-template-columns: 1fr !important;
                         text-align: center !important;
+                        gap: 1.5rem !important;
                     }
                     .animate-fade-in {
                         order: 2;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        margin-top: 1rem !important;
+                        margin-top: 0.5rem !important;
+                        text-align: center !important;
                     }
-                    div[style*="height: 600px"] {
+                    .hero-social-links {
+                        justify-content: center !important;
+                    }
+                    .hero-lanyard-wrapper {
                         order: 1;
-                        height: 480px !important;
-                        margin-bottom: 0rem;
-                        margin-top: 0.5rem;
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        height: 380px !important;
+                        margin-bottom: 0 !important;
+                        margin-top: 0.5rem !important;
+                        width: 100% !important;
+                        max-width: 100vw !important;
+                        display: flex !important;
+                        justify-content: center !important;
+                        align-items: center !important;
+                        overflow: hidden !important;
                     }
                 }
                 @media (max-width: 480px) {

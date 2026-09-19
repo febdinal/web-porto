@@ -37,18 +37,35 @@ const Lanyard = () => {
 
     // Responsive Scale
     const [scale, setScale] = useState(1);
+    const scaleRef = useRef(scale);
 
     useEffect(() => {
         const handleResize = () => {
-            // 400px is the base container width. Scale down responsively if needed.
-            const newScale = Math.min((window.innerWidth - 30) / 400, 1);
-            setScale(newScale);
+            const width = window.innerWidth;
+            let targetScale = 1;
+            if (width <= 480) {
+                targetScale = Math.min((width - 32) / 400, 0.64);
+            } else if (width <= 768) {
+                targetScale = Math.min((width - 40) / 400, 0.72);
+            } else if (width <= 1024) {
+                targetScale = 0.85;
+            } else {
+                targetScale = 1;
+            }
+            setScale(targetScale);
         };
 
         handleResize(); // Init
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        scaleRef.current = scale;
+        if (mouseRef.current && scale > 0) {
+            Matter.Mouse.setScale(mouseRef.current, { x: 1 / scale, y: 1 / scale });
+        }
+    }, [scale]);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -100,6 +117,9 @@ const Lanyard = () => {
         // Mouse Drag Interaction
         const mouse = Mouse.create(containerRef.current);
         mouseRef.current = mouse;
+        if (scaleRef.current > 0) {
+            Mouse.setScale(mouse, { x: 1 / scaleRef.current, y: 1 / scaleRef.current });
+        }
 
         const mouseConstraint = MouseConstraint.create(engine, {
             mouse: mouse,
@@ -227,12 +247,6 @@ const Lanyard = () => {
         };
     }, []);
 
-    // Sync drag scale coordinate map
-    useEffect(() => {
-        if (mouseRef.current) {
-            Matter.Mouse.setScale(mouseRef.current, { x: 1 / scale, y: 1 / scale });
-        }
-    }, [scale]);
 
     // Track mouse coordinates for subtle perspective card hover tilt
     const handleMouseMove = (e) => {
@@ -264,16 +278,28 @@ const Lanyard = () => {
         hoverTiltRef.current = { x: 0, y: 0 };
     };
 
+    const computedWidth = Math.round(400 * scale);
+    const computedHeight = Math.round(600 * scale);
+
     return (
         <div style={{
             position: 'relative',
-            width: '400px',
-            height: '600px',
+            width: `${computedWidth}px`,
+            height: `${computedHeight}px`,
+            maxWidth: '100%',
             margin: '0 auto',
-            transform: `scale(${scale})`,
-            transformOrigin: 'top center'
+            overflow: 'visible'
         }}>
-            <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%', overflow: 'visible', userSelect: 'none', pointerEvents: 'none' }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                transform: `translateX(-50%) scale(${scale})`,
+                transformOrigin: 'top center',
+                width: '400px',
+                height: '600px'
+            }}>
+                <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%', overflow: 'visible', userSelect: 'none', pointerEvents: 'none' }}>
 
                 {/* SVG Flexible Strap (Behind the card layer) */}
                 <svg
@@ -708,6 +734,7 @@ const Lanyard = () => {
                 }}>
                     Drag to swing card
                 </p>
+            </div>
             </div>
         </div>
     );

@@ -63,20 +63,20 @@ const Playground = () => {
                 <div className="glass" style={{ padding: '2rem', textAlign: 'center', minHeight: '400px', position: 'relative', overflow: 'hidden' }}>
 
                     {!gameActive && timeLeft === 30 && (
-                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
-                            <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Catch the Bugs!</h3>
-                            <p style={{ marginBottom: '2rem' }}>Click on the bugs before time runs out!</p>
-                            <button onClick={startGame} className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '1rem 3rem' }}>
+                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, width: '90%', maxWidth: '380px' }}>
+                            <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', marginBottom: '0.75rem' }}>Catch the Bugs!</h3>
+                            <p style={{ marginBottom: '1.5rem', fontSize: 'clamp(0.9rem, 3vw, 1rem)', color: '#cbd5e1' }}>Click on the bugs before time runs out!</p>
+                            <button onClick={startGame} className="btn btn-primary" style={{ fontSize: '1rem', padding: '0.8rem 2.2rem' }}>
                                 Start Game
                             </button>
                         </div>
                     )}
 
                     {!gameActive && timeLeft === 0 && (
-                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
-                            <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Game Over!</h3>
-                            <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--accent-color)' }}>Final Score: {score}</p>
-                            <button onClick={startGame} className="btn btn-primary">
+                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, width: '90%', maxWidth: '380px' }}>
+                            <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', marginBottom: '0.75rem' }}>Game Over!</h3>
+                            <p style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: 'var(--accent-color)', fontWeight: 600 }}>Final Score: {score}</p>
+                            <button onClick={startGame} className="btn btn-primary" style={{ fontSize: '1rem', padding: '0.8rem 2.2rem' }}>
                                 Play Again
                             </button>
                         </div>

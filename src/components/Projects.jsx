@@ -223,7 +223,7 @@ const Projects = () => {
                                     </div>
 
                                     {/* Project Details */}
-                                    <div style={{ padding: '1.6rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                    <div className="project-card-body" style={{ padding: 'clamp(1.1rem, 4vw, 1.6rem)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                                         <div style={{ marginBottom: '0.4rem' }}>
                                             <span style={{ 
                                                 fontSize: '0.78rem', 
@@ -320,6 +320,55 @@ const Projects = () => {
                             />
                         ))}
                     </div>
+
+                    {/* Mobile Carousel Navigation Controls */}
+                    {isMobile && (
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginTop: '1.2rem' }}>
+                            <button
+                                onClick={scrollPrev}
+                                disabled={activeIndex === 0}
+                                style={{
+                                    padding: '8px 18px',
+                                    borderRadius: '20px',
+                                    background: activeIndex === 0 ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.1)',
+                                    color: activeIndex === 0 ? 'rgba(255, 255, 255, 0.25)' : '#ffffff',
+                                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    cursor: activeIndex === 0 ? 'default' : 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}
+                                aria-label="Previous project"
+                            >
+                                ‹ Prev
+                            </button>
+                            <span style={{ fontSize: '0.82rem', fontFamily: 'var(--font-code)', color: 'var(--accent-color)', fontWeight: 600 }}>
+                                {activeIndex + 1} / {featuredProjects.length}
+                            </span>
+                            <button
+                                onClick={scrollNext}
+                                disabled={activeIndex === featuredProjects.length - 1}
+                                style={{
+                                    padding: '8px 18px',
+                                    borderRadius: '20px',
+                                    background: activeIndex === featuredProjects.length - 1 ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.1)',
+                                    color: activeIndex === featuredProjects.length - 1 ? 'rgba(255, 255, 255, 0.25)' : '#ffffff',
+                                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    cursor: activeIndex === featuredProjects.length - 1 ? 'default' : 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}
+                                aria-label="Next project"
+                            >
+                                Next ›
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* Other Projects & Experiments Section */}
@@ -368,15 +417,15 @@ const Projects = () => {
                     style={{
                         position: 'fixed',
                         inset: 0,
-                        backgroundColor: 'rgba(5, 5, 8, 0.88)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
+                        backgroundColor: 'rgba(5, 5, 8, 0.92)',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)',
                         zIndex: 9999,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        padding: '1.25rem',
+                        padding: isMobile ? '0.5rem' : '1.25rem',
                         animation: 'fadeIn 0.2s ease'
                     }}
                 >
@@ -386,12 +435,12 @@ const Projects = () => {
                             position: 'relative',
                             maxWidth: '1000px',
                             width: '100%',
-                            maxHeight: '92vh',
+                            maxHeight: isMobile ? '96vh' : '92vh',
                             display: 'flex',
                             flexDirection: 'column',
                             background: 'rgba(18, 19, 26, 0.98)',
                             border: '1px solid rgba(255, 255, 255, 0.18)',
-                            borderRadius: '16px',
+                            borderRadius: isMobile ? '12px' : '16px',
                             overflow: 'hidden',
                             boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.8)'
                         }}
@@ -401,32 +450,33 @@ const Projects = () => {
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            padding: '1rem 1.25rem',
+                            padding: isMobile ? '0.75rem 1rem' : '1rem 1.25rem',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                             background: 'rgba(255, 255, 255, 0.02)'
                         }}>
-                            <div>
-                                <h4 style={{ margin: 0, color: '#fff', fontSize: '1.1rem', fontWeight: 600 }}>
+                            <div style={{ minWidth: 0, paddingRight: '0.5rem' }}>
+                                <h4 style={{ margin: 0, color: '#fff', fontSize: isMobile ? '0.95rem' : '1.1rem', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                     {selectedModalProject.title}
                                 </h4>
-                                <span style={{ fontSize: '0.78rem', color: 'var(--accent-color)', fontFamily: 'var(--font-code)' }}>
+                                <span style={{ fontSize: '0.72rem', color: 'var(--accent-color)', fontFamily: 'var(--font-code)' }}>
                                     {selectedModalProject.category}
                                 </span>
                             </div>
                             <button
                                 onClick={() => setSelectedModalProject(null)}
                                 style={{
-                                    background: 'rgba(255, 255, 255, 0.08)',
+                                    background: 'rgba(255, 255, 255, 0.1)',
                                     border: '1px solid rgba(255, 255, 255, 0.15)',
                                     color: '#fff',
                                     borderRadius: '50%',
-                                    width: '34px',
-                                    height: '34px',
+                                    width: '32px',
+                                    height: '32px',
+                                    flexShrink: 0,
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     cursor: 'pointer',
-                                    fontSize: '1rem',
+                                    fontSize: '0.9rem',
                                     transition: 'all 0.2s ease'
                                 }}
                                 aria-label="Close Preview"
@@ -437,9 +487,9 @@ const Projects = () => {
 
                         {/* Modal Image Body */}
                         <div style={{ 
-                            padding: '1rem', 
+                            padding: isMobile ? '0.5rem' : '1rem', 
                             overflowY: 'auto', 
-                            maxHeight: 'calc(92vh - 80px)', 
+                            maxHeight: isMobile ? 'calc(96vh - 65px)' : 'calc(92vh - 80px)', 
                             display: 'flex', 
                             justifyContent: 'center', 
                             alignItems: 'center',
@@ -450,7 +500,7 @@ const Projects = () => {
                                 alt={selectedModalProject.title}
                                 style={{
                                     maxWidth: '100%',
-                                    maxHeight: 'calc(85vh - 100px)',
+                                    maxHeight: isMobile ? 'calc(92vh - 85px)' : 'calc(85vh - 100px)',
                                     objectFit: 'contain',
                                     borderRadius: '8px',
                                     display: 'block',

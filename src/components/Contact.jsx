@@ -107,14 +107,14 @@ const Contact = () => {
                                 name="name" 
                                 placeholder="Name" 
                                 required 
-                                style={{ flex: 1, padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '0.95rem' }} 
+                                style={{ flex: 1, padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '1rem' }} 
                             />
                             <input 
                                 type="email" 
                                 name="email" 
                                 placeholder="Email" 
                                 required 
-                                style={{ flex: 1, padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '0.95rem' }} 
+                                style={{ flex: 1, padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '1rem' }} 
                             />
                         </div>
 
@@ -123,7 +123,7 @@ const Contact = () => {
                             name="title" 
                             placeholder="Subject" 
                             required 
-                            style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '0.95rem' }} 
+                            style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '1rem' }} 
                         />
 
                         <textarea 
@@ -131,7 +131,7 @@ const Contact = () => {
                             rows="5" 
                             placeholder="Message" 
                             required 
-                            style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', resize: 'vertical', fontSize: '0.95rem', minHeight: '120px' }}
+                            style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: '#fff', outline: 'none', resize: 'vertical', fontSize: '1rem', minHeight: '120px' }}
                         ></textarea>
 
                         <button 
@@ -191,6 +191,18 @@ const Contact = () => {
                     }
                     .contact-links {
                         gap: 0.75rem !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .contact-card {
+                        padding: 1.25rem 1rem !important;
+                    }
+                    .contact-links {
+                        gap: 0.5rem !important;
+                    }
+                    .contact-link-item {
+                        padding: 8px 14px !important;
+                        font-size: 0.85rem !important;
                     }
                 }
             `}</style>

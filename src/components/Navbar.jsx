@@ -15,6 +15,18 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     const navLinks = [
         { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
@@ -130,7 +142,7 @@ const Navbar = () => {
                         top: 0,
                         left: 0,
                         width: '100vw',
-                        height: '100vh',
+                        height: '100dvh',
                         background: 'rgba(10, 10, 14, 0.98)',
                         backdropFilter: 'blur(16px)',
                         display: 'flex',
@@ -138,8 +150,10 @@ const Navbar = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: '1.8rem',
-                        transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+                        transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease',
                         transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+                        pointerEvents: isOpen ? 'auto' : 'none',
+                        visibility: isOpen ? 'visible' : 'hidden',
                         zIndex: 1000
                     }}
                 >
